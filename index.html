@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memes Brasil</title>
 
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav button {
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
+        .upload-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .meme {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .meme img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .actions button {
+            margin: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        #preview {
+            max-width: 100%;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Memes Brasil</h1>
+        <p>Ironia, memes e humor da internet.</p>
+    </header>
+
+    <nav>
+        <button onclick="mostrarFeed()">Feed</button>
+        <button onclick="mostrarUpload()">Enviar meme</button>
+    </nav>
+
+    <main>
+
+        <section id="upload" class="upload-box">
+            <h2>Enviar um meme</h2>
+
+            <input type="file" id="memeInput" accept="image/*">
+
+            <br><br>
+
+            <button onclick="previsualizarMeme()">
+                Pré-visualizar
+            </button>
+
+            <img id="preview">
+
+            <p>
+                ⚠️ O conteúdo deverá passar por moderação antes de ser publicado.
+            </p>
+        </section>
+
+        <section id="feed">
+
+            <div class="meme">
+                <h3>Usuário_anônimo</h3>
+
+                <p>
+                    Quando você abre o VS Code achando que vai programar
+                    e passa 3 horas configurando tudo.
+                </p>
+
+                <div class="actions">
+                    <button>😂 Curtir</button>
+                    <button>💬 Comentar</button>
+                    <button>⚠️ Denunciar</button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        function previsualizarMeme() {
+            const input = document.getElementById("memeInput");
+            const preview = document.getElementById("preview");
+
+            if (input.files.length > 0) {
+                const arquivo = input.files[0];
+                preview.src = URL.createObjectURL(arquivo);
+                preview.style.display = "block";
+            }
+        }
+
+        function mostrarFeed() {
+            document.getElementById("feed").style.display = "block";
+            document.getElementById("upload").style.display = "none";
+        }
+
+        function mostrarUpload() {
+            document.getElementById("feed").style.display = "none";
+            document.getElementById("upload").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
